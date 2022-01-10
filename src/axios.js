@@ -23,6 +23,7 @@ class Axios {
       body,
       method,
       type = '',
+      dataSource = '',
       url = null
     }
   ) {
@@ -43,7 +44,8 @@ class Axios {
     return new Promise((resolve, reject) => {
       window.$nuxt.$axios[`$${method}`](endpoint, body)
         .then((response) => {
-          const { data, code: statusCode } = response
+          const data = dataSource ? response[dataSource] : response
+          const statusCode = 200
   
           commit(mMap(type).SUCCESS, {
             data,
@@ -56,7 +58,7 @@ class Axios {
           resolve(response)
         })
         .catch((error) => {
-          const { code: statusCode } = error.response.data.error
+          const { status: statusCode } = error.response
   
           commit(mMap(type).FAILURE, {
             statusCode,
@@ -70,22 +72,69 @@ class Axios {
   }
   
   /**
+   * Api call normal style using nuxt axios
+   * --> will generate 3 mutations (PENDING, SUCCESS, FAILURE)
    *
-   * @param {Object} param0 - Vuex context
-   * @param {Object} param1 - For axios
-   * NOTE -- method value must be non fetch style ex: post, get, put etc (without $)
+   * @param {Function} commit
+   * @param {Object} body - axios body
+   * @param {String} type
+   * @param {String} url
    *
    * @returns {Promise}
    */
-  apiCall  (
+   apiCall (
     commit,
     {
       body,
       method,
       type = '',
+      dataSource = '',
       url = null
     }
-  ) {}
+  ) {
+    const dataKey = type ? snakeToCamel(`data_${type}`) : false
+    const loadingKey = type ? snakeToCamel(`loading_${type}`) : false
+    const statusCodeKey = type ? snakeToCamel(`status_code_${type}`) : false
+    
+    let endpoint = url
+    if (!url) {
+      endpoint = type ? this.endpoint[type] : this.endpoint.base
+    }
+    
+    commit(mMap(type).PENDING, {
+      loadingKey,
+      loading: true
+    })
+  
+    return new Promise((resolve, reject) => {
+      window.$nuxt.$axios[`${method}`](endpoint, body)
+        .then((response) => {
+          const { data: _data, status: statusCode } = response
+          const data = dataSource ? _data[dataSource] : _data
+  
+          commit(mMap(type).SUCCESS, {
+            data,
+            dataKey,
+            statusCode,
+            statusCodeKey,
+            loadingKey
+          })
+  
+          resolve(response)
+        })
+        .catch((error) => {
+          const { status: statusCode } = error.response
+  
+          commit(mMap(type).FAILURE, {
+            statusCode,
+            statusCodeKey,
+            loadingKey
+          })
+  
+          reject(error)
+        })
+    })
+  }
 }
 
 module.exports = Axios
