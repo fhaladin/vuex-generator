@@ -7,6 +7,7 @@ Facing some problems like :
 
 Probably this package will help you.
 
+
 ## Features
 This package came out with some features :
 - Asynchronous handler
@@ -15,6 +16,7 @@ This package came out with some features :
 - State with Array & Object data type handler
 - Auto generate mutations
 - Running well on Vue Dev Tools
+
 
 ## Installation
 Install @fhaladin/vuex-generator with npm
@@ -27,6 +29,7 @@ with yarn
 ```bash
   yarn add @fhaladin/vuex-generator
 ```  
+
 ## Usage/Examples
 Follow this step to use this package on your project.
 
@@ -70,6 +73,8 @@ export const actions = {
 Every `<module-name>.createAsync` will generate 3 mutations (PENDING, SUCCESS & FAILURE).
 
 If the type is applicable, mutations will have suffix based on the type.
+
+
 ## Non-Asynchronous Usage
 Instead of using `createAsync` you can use `createNonAsync` to handle Non-Asynchronous state.
 
@@ -114,7 +119,7 @@ You can set true to generate all mutations or set array of mutations that you ne
 
 
 ## Change Log
-[Soon](https://)
+See [CHANGELOG.md.](https://github.com/fhaladin/vuex-generator/blob/master/CHANGELOG.md)
 
 
 ## Authors
@@ -127,4 +132,3 @@ For support, email farhan.nif.alaudin@gmail.com.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
-
