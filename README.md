@@ -33,10 +33,10 @@ with yarn
 ## Usage/Examples
 Follow this step to use this package on your project.
 
-1. **Tell nuxt to use vuex**
+- **Tell nuxt to use vuex**
 Create `index.html` inside `/store` folder.
 
-2. **Create vuex module**
+- **Create vuex module**
 Create module file inside `/store` folder.
 You can use whatever name you want for every module according to your project.
 

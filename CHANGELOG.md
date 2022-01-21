@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.1.0 - 2022-01-21
+
+- Change ambigous parameter name in apiCall 
+  - from `body` into `config`
+
 ## 1.1.0 - 2022-01-10
 
 - Bug Fixess fixed
