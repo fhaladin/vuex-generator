@@ -24,7 +24,7 @@ var Axios = function () {
    * --> will generate 3 mutations (PENDING, SUCCESS, FAILURE)
    *
    * @param {Function} commit
-   * @param {Object} body - axios body
+   * @param {Object} config - axios config
    * @param {String} type
    * @param {String} url
    *
@@ -35,7 +35,7 @@ var Axios = function () {
   _createClass(Axios, [{
     key: '$apiCall',
     value: function $apiCall(commit, _ref) {
-      var body = _ref.body,
+      var config = _ref.config,
           method = _ref.method,
           _ref$type = _ref.type,
           type = _ref$type === undefined ? '' : _ref$type,
@@ -59,7 +59,7 @@ var Axios = function () {
       });
 
       return new Promise(function (resolve, reject) {
-        window.$nuxt.$axios['$' + method](endpoint, body).then(function (response) {
+        window.$nuxt.$axios['$' + method](endpoint, config).then(function (response) {
           var data = dataSource ? response[dataSource] : response;
           var statusCode = 200;
 
@@ -92,7 +92,7 @@ var Axios = function () {
      * --> will generate 3 mutations (PENDING, SUCCESS, FAILURE)
      *
      * @param {Function} commit
-     * @param {Object} body - axios body
+     * @param {Object} config - axios config
      * @param {String} type
      * @param {String} url
      *
@@ -102,7 +102,7 @@ var Axios = function () {
   }, {
     key: 'apiCall',
     value: function apiCall(commit, _ref2) {
-      var body = _ref2.body,
+      var config = _ref2.config,
           method = _ref2.method,
           _ref2$type = _ref2.type,
           type = _ref2$type === undefined ? '' : _ref2$type,
@@ -126,7 +126,7 @@ var Axios = function () {
       });
 
       return new Promise(function (resolve, reject) {
-        window.$nuxt.$axios['' + method](endpoint, body).then(function (response) {
+        window.$nuxt.$axios['' + method](endpoint, config).then(function (response) {
           var _data = response.data,
               statusCode = response.status;
 

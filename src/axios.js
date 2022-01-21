@@ -11,7 +11,7 @@ class Axios {
    * --> will generate 3 mutations (PENDING, SUCCESS, FAILURE)
    *
    * @param {Function} commit
-   * @param {Object} body - axios body
+   * @param {Object} config - axios config
    * @param {String} type
    * @param {String} url
    *
@@ -20,7 +20,7 @@ class Axios {
   $apiCall (
     commit,
     {
-      body,
+      config,
       method,
       type = '',
       dataSource = '',
@@ -42,7 +42,7 @@ class Axios {
     })
   
     return new Promise((resolve, reject) => {
-      window.$nuxt.$axios[`$${method}`](endpoint, body)
+      window.$nuxt.$axios[`$${method}`](endpoint, config)
         .then((response) => {
           const data = dataSource ? response[dataSource] : response
           const statusCode = 200
@@ -76,7 +76,7 @@ class Axios {
    * --> will generate 3 mutations (PENDING, SUCCESS, FAILURE)
    *
    * @param {Function} commit
-   * @param {Object} body - axios body
+   * @param {Object} config - axios config
    * @param {String} type
    * @param {String} url
    *
@@ -85,7 +85,7 @@ class Axios {
    apiCall (
     commit,
     {
-      body,
+      config,
       method,
       type = '',
       dataSource = '',
@@ -107,7 +107,7 @@ class Axios {
     })
   
     return new Promise((resolve, reject) => {
-      window.$nuxt.$axios[`${method}`](endpoint, body)
+      window.$nuxt.$axios[`${method}`](endpoint, config)
         .then((response) => {
           const { data: _data, status: statusCode } = response
           const data = dataSource ? _data[dataSource] : _data
