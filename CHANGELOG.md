@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## 1.1.3 - 2022-03-31
+
+Bug Fix
+
+- Fix remove mutation in object mutations (bc28c07)
+
+
 ## 1.1.2 - 2022-03-31
 
 Bug Fix
