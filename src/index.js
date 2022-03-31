@@ -116,9 +116,7 @@ class VuexGenerator {
       state[key] = value
     }
 
-    if (value) {
-      this.state[key] = value
-    }
+    this.state[key] = value
   }
 
   // ANCHOR - ARRAY
