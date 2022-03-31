@@ -224,7 +224,7 @@ class VuexGenerator {
   }
 
   createRemove (key) {
-    this.mutations[`UPDATE_${key.toUpperCase()}`] = (state, payload) => {
+    this.mutations[`REMOVE_${key.toUpperCase()}`] = (state, payload) => {
       state[key][payload.key] = undefined
     }
   }
