@@ -191,9 +191,7 @@ var VuexGenerator = function () {
         state[key] = value;
       };
 
-      if (value) {
-        this.state[key] = value;
-      }
+      this.state[key] = value;
     }
 
     // ANCHOR - ARRAY
