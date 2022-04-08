@@ -4,6 +4,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _constantCase = require('constant-case');
+
 var _mutationMap = require('./mutation-map');
 
 var _mutationMap2 = _interopRequireDefault(_mutationMap);
@@ -181,7 +183,7 @@ var VuexGenerator = function () {
     value: function createBaseMutations(key, value) {
       var mutations = this.mutations;
 
-      var KEY = key.toUpperCase();
+      var KEY = (0, _constantCase.constantCase)(key);
 
       mutations['SET_' + KEY] = function (state, payload) {
         state[key] = payload;

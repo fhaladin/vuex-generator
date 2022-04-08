@@ -1,3 +1,5 @@
+import { constantCase } from 'constant-case'
+
 import mMap from './mutation-map'
 import Axios from './axios'
 
@@ -106,7 +108,7 @@ class VuexGenerator {
 
   createBaseMutations (key, value) {
     const { mutations } = this
-    const KEY = key.toUpperCase()
+    const KEY = constantCase(key)
 
     mutations[`SET_${KEY}`] = (state, payload) => {
       state[key] = payload
