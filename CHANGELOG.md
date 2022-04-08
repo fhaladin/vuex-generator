@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## 1.1.4 - 2022-04-08
+
+Improvement
+
+- Convert all mutations into constant case (3cb521b)
+
+
 ## 1.1.3 - 2022-03-31
 
 Bug Fix
