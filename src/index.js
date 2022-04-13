@@ -37,14 +37,16 @@ class VuexGenerator {
     }
 
     mutations[mMap(type).SUCCESS] = (state, payload) => {
+      if (payload.fetch) {
+        this.setState(state, {
+          key: payload.dataKey || 'data',
+          value: payload.data
+        })
+      }
+      
       this.setState(state, {
         key: payload.statusCodeKey || 'statusCode',
         value: payload.statusCode
-      })
-
-      this.setState(state, {
-        key: payload.dataKey || 'data',
-        value: payload.data
       })
 
       this.setState(state, {

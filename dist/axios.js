@@ -42,7 +42,9 @@ var Axios = function () {
           _ref$dataSource = _ref.dataSource,
           dataSource = _ref$dataSource === undefined ? '' : _ref$dataSource,
           _ref$url = _ref.url,
-          url = _ref$url === undefined ? null : _ref$url;
+          url = _ref$url === undefined ? null : _ref$url,
+          _ref$fetch = _ref.fetch,
+          fetch = _ref$fetch === undefined ? true : _ref$fetch;
 
       var dataKey = type ? (0, _string.snakeToCamel)('data_' + type) : false;
       var loadingKey = type ? (0, _string.snakeToCamel)('loading_' + type) : false;
@@ -60,10 +62,15 @@ var Axios = function () {
 
       return new Promise(function (resolve, reject) {
         window.$nuxt.$axios['$' + method](endpoint, config).then(function (response) {
-          var data = dataSource ? response[dataSource] : response;
           var statusCode = 200;
 
+          var data = dataSource ? response[dataSource] : response;
+          if (!fetch) {
+            data = [];
+          }
+
           commit((0, _mutationMap2.default)(type).SUCCESS, {
+            fetch: fetch,
             data: data,
             dataKey: dataKey,
             statusCode: statusCode,
@@ -109,7 +116,9 @@ var Axios = function () {
           _ref2$dataSource = _ref2.dataSource,
           dataSource = _ref2$dataSource === undefined ? '' : _ref2$dataSource,
           _ref2$url = _ref2.url,
-          url = _ref2$url === undefined ? null : _ref2$url;
+          url = _ref2$url === undefined ? null : _ref2$url,
+          _ref2$fetch = _ref2.fetch,
+          fetch = _ref2$fetch === undefined ? true : _ref2$fetch;
 
       var dataKey = type ? (0, _string.snakeToCamel)('data_' + type) : false;
       var loadingKey = type ? (0, _string.snakeToCamel)('loading_' + type) : false;
@@ -130,9 +139,14 @@ var Axios = function () {
           var _data = response.data,
               statusCode = response.status;
 
+
           var data = dataSource ? _data[dataSource] : _data;
+          if (!fetch) {
+            data = [];
+          }
 
           commit((0, _mutationMap2.default)(type).SUCCESS, {
+            fetch: fetch,
             data: data,
             dataKey: dataKey,
             statusCode: statusCode,

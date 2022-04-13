@@ -24,7 +24,8 @@ class Axios {
       method,
       type = '',
       dataSource = '',
-      url = null
+      url = null,
+      fetch = true
     }
   ) {
     const dataKey = type ? snakeToCamel(`data_${type}`) : false
@@ -44,10 +45,15 @@ class Axios {
     return new Promise((resolve, reject) => {
       window.$nuxt.$axios[`$${method}`](endpoint, config)
         .then((response) => {
-          const data = dataSource ? response[dataSource] : response
           const statusCode = 200
+
+          let data = dataSource ? response[dataSource] : response
+          if (!fetch) {
+            data = []
+          }
   
           commit(mMap(type).SUCCESS, {
+            fetch,
             data,
             dataKey,
             statusCode,
@@ -89,7 +95,8 @@ class Axios {
       method,
       type = '',
       dataSource = '',
-      url = null
+      url = null,
+      fetch = true
     }
   ) {
     const dataKey = type ? snakeToCamel(`data_${type}`) : false
@@ -110,9 +117,14 @@ class Axios {
       window.$nuxt.$axios[`${method}`](endpoint, config)
         .then((response) => {
           const { data: _data, status: statusCode } = response
-          const data = dataSource ? _data[dataSource] : _data
+          
+          let data = dataSource ? _data[dataSource] : _data
+          if (!fetch) {
+            data = []
+          }
   
           commit(mMap(type).SUCCESS, {
+            fetch,
             data,
             dataKey,
             statusCode,
