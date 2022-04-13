@@ -65,14 +65,16 @@ var VuexGenerator = function () {
       };
 
       mutations[(0, _mutationMap2.default)(type).SUCCESS] = function (state, payload) {
+        if (payload.fetch) {
+          _this.setState(state, {
+            key: payload.dataKey || 'data',
+            value: payload.data
+          });
+        }
+
         _this.setState(state, {
           key: payload.statusCodeKey || 'statusCode',
           value: payload.statusCode
-        });
-
-        _this.setState(state, {
-          key: payload.dataKey || 'data',
-          value: payload.data
         });
 
         _this.setState(state, {
