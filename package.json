@@ -28,6 +28,8 @@
     "babel-preset-es2015": "^6.24.1"
   },
   "dependencies": {
-    "constant-case": "^3.0.4"
+    "constant-case": "^3.0.4",
+    "object-path": "^0.11.8",
+    "sprintf-js": "^1.1.2"
   }
 }
