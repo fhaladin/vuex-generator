@@ -20,6 +20,7 @@ class VuexGenerator {
       }
 
       mutations[`RESET_${KEY}`] = (state) => {
+        state[key] = states[key]
       }
 
       this.state[key] = states[key]
@@ -49,7 +50,7 @@ class VuexGenerator {
 
     const loadingKey = state ? `${state}Loading` : 'loading'
     const statusCodeKey = state ? `${state}StatusCode` : 'statusCode'
-    const stateKey = state ? `${state}Data` : 'data'
+    const stateKey = state ? `${state}` : 'data'
 
     this.state[loadingKey] = loadingDefault
 
@@ -148,7 +149,7 @@ class VuexGenerator {
 }
 
 const MUTATION_MAP = (type) => {
-  const _type = type ? `${type}_` : ''
+  const _type = type ? `${constantCase(type)}_` : ''
 
   return {
     PENDING: `${_type}PENDING`,
