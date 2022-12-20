@@ -39,7 +39,9 @@ var VuexGenerator = function () {
           state[key] = payload;
         };
 
-        mutations['RESET_' + KEY] = function (state) {};
+        mutations['RESET_' + KEY] = function (state) {
+          state[key] = states[key];
+        };
 
         _this.state[key] = states[key];
       };
@@ -81,7 +83,7 @@ var VuexGenerator = function () {
 
       var loadingKey = state ? state + 'Loading' : 'loading';
       var statusCodeKey = state ? state + 'StatusCode' : 'statusCode';
-      var stateKey = state ? state + 'Data' : 'data';
+      var stateKey = state ? '' + state : 'data';
 
       this.state[loadingKey] = loadingDefault;
 
@@ -184,7 +186,7 @@ var VuexGenerator = function () {
 }();
 
 var MUTATION_MAP = function MUTATION_MAP(type) {
-  var _type = type ? type + '_' : '';
+  var _type = type ? (0, _constantCase.constantCase)(type) + '_' : '';
 
   return {
     PENDING: _type + 'PENDING',
