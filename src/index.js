@@ -98,6 +98,7 @@ class VuexGenerator {
     } catch (error) {
       commit(MUTATION_MAP(name).FAILURE, {
         loadingKey,
+        statusCodeKey,
         statusCode: error.response.status
       })
 
