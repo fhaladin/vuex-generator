@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## 2.0.2-alpha - 2023-02-02
+
+Bug Fix (3b5a600)
+
+- Fix status code on failure
+
+
 ## 2.0.1-alpha - 2022-12-20
 
 Improvement (22eb74d)
