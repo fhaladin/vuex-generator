@@ -42,11 +42,11 @@ class VuexGenerator {
     const { commit, state: vuexState } = context
 
     const refresh = !!payload.refresh
-    const sprintfData = payload.sprintfData || {}
+    const sprintfData = payload.sprintfData || null
     const payloadData = payload.data || {}
     const config = payload.config || {}
 
-    const trueEndpoint = sprintf(endpoint, sprintfData)
+    const trueEndpoint = sprintfData ? sprintf(endpoint, sprintfData) : endpoint
 
     const loadingKey = state ? `${state}Loading` : 'loading'
     const statusCodeKey = state ? `${state}StatusCode` : 'statusCode'

@@ -75,11 +75,11 @@ var VuexGenerator = function () {
 
 
       var refresh = !!payload.refresh;
-      var sprintfData = payload.sprintfData || {};
+      var sprintfData = payload.sprintfData || null;
       var payloadData = payload.data || {};
       var config = payload.config || {};
 
-      var trueEndpoint = (0, _sprintfJs.sprintf)(endpoint, sprintfData);
+      var trueEndpoint = sprintfData ? (0, _sprintfJs.sprintf)(endpoint, sprintfData) : endpoint;
 
       var loadingKey = state ? state + 'Loading' : 'loading';
       var statusCodeKey = state ? state + 'StatusCode' : 'statusCode';
@@ -129,6 +129,7 @@ var VuexGenerator = function () {
       } catch (error) {
         commit(MUTATION_MAP(name).FAILURE, {
           loadingKey: loadingKey,
+          statusCodeKey: statusCodeKey,
           statusCode: error.response.status
         });
 
