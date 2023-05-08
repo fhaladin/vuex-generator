@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## 2.0.3-alpha - 2023-05-08
+
+Bug Fix (d73f341)
+
+- Sprintf feature issue
+
+
 ## 2.0.2-alpha - 2023-02-02
 
 Bug Fix (3b5a600)
